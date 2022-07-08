@@ -313,6 +313,82 @@
     text-decoration: none;
 }
 
+.video__banner-wraper {
+    position: relative;
+}
+
+.video__banner-video {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.video__banner-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video__banner-image {
+
+}
+
+.video__banner-image img {
+    width: 100%;
+    height: auto;
+}
+
+.video__banner-text-content {
+    position: absolute;
+    padding: 0 50px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.video__banner-heading {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 70px;
+    text-transform: none;
+    line-height: 1.125;
+    letter-spacing: 0px;
+    margin: 0;
+    margin-bottom: 1.5rem;
+    color: #f3f2f3;
+}
+
+.btn {
+    font-style: inherit;
+    font-weight: inherit;
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 0;
+    color: white;
+    background-color: #0c0c0c;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 13px 56px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.btn:hover {
+    animation: slide .2s;
+}
+
+.btn--outline {
+    border: none;
+    background-color: transparent;
+}
+
 @media (max-width: 750px) {
     .header__inline-menu {
         display: none;
@@ -320,5 +396,21 @@
 
     .header__heading-link {
         width: 160px;
+    }
+
+    .video__banner-heading {
+        line-height: 32px;
+        font-size: 30px;
+        padding-bottom: 15px;
+        margin-bottom: 0;
+    }
+
+    .video__banner-text-content {
+        top: 20%;
+        transform: none;
+    }
+
+    .btn {
+        padding: 0;
     }
 }
