@@ -1,0 +1,25 @@
+<div class="product-card">
+    <p class="product-title">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+    </p>
+    {% assign width = product.featured_image.width | plus: 0.0 %}
+    {% assign height = product.featured_image.height | plus: 0.0 %}
+    {% assign st = height | divided_by: width | times: 100 %}
+    <a href="{{ product.url }}" class="product-image" style="padding-bottom: {{ st }}%;">
+        {{ product.featured_image | img_url: '750x' | img_tag }}
+    </a>
+    <div class="product-info">
+        <p class="product-price">
+            <a href="{{ product.url }}">
+                {{ product.price | money }}
+            </a>
+        </p>
+        {% if description != blank %}
+            <p class="product-description">
+                <a href="{{ product.url }}">
+                    <span>{{ description }}</span>
+                </a>
+            </p>
+        {% endif %}
+    </div>
+</div>
