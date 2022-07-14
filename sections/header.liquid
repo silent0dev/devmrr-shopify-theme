@@ -171,6 +171,15 @@
                       </li>
                     {%- endfor -%}
                   </ul>
+                  <div class="lang-list-selecter">
+                    <select>
+                      <option value="de">Deutsch</option>
+                      <option value="en">English</option>
+                    </select>
+                    <span class="icon" data-icon="down-caret">
+                      {% render 'icon-dropdown-arrow' %}
+                    </span>
+                  </div>
                 </nav>
                 <div class="menu-drawer__utility-links">
                   {%- if shop.customer_accounts_enabled -%}
@@ -407,8 +416,9 @@
                     </details>
                   </header-menu>
                 {%- else -%}
-                  <a href="{{ link.url }}" class="header__menu-item header__menu-item list-menu__item link link--text focus-inset"{% if link.current %} aria-current="page"{% endif %} data-megamenu-id="megamenu--{{ link.title | handleize }}">
-                    <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                  <a href="{{ link.url }}" class="header__menu-item header__menu-item list-menu__item link link--text focus-inset link-slider{% if link.current %} aria-current="page"{% endif %} data-megamenu-id="megamenu--{{ link.title | handleize }}">
+                    <span class="slider-text-1{%- if link.current %}header__active-menu-item{% endif %}">{{ link.title | escape }}</span>
+                    <span class="slider-text-2{%- if link.current %}header__active-menu-item{% endif %}">{{ link.title | escape }}</span>
                   </a>
                 {%- endif -%}
               </li>
@@ -452,8 +462,9 @@
                     </details>
                   </header-menu>
                 {%- else -%}
-                  <a href="{{ link.url }}" class="header__menu-item header__menu-item list-menu__item link link--text focus-inset"{% if link.current %} aria-current="page"{% endif %} data-megamenu-id="megamenu--{{ link.title | handleize }}">
-                    <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                  <a href="{{ link.url }}" class="header__menu-item header__menu-item list-menu__item link link--text focus-inset link-slider"{% if link.current %} aria-current="page"{% endif %} data-megamenu-id="megamenu--{{ link.title | handleize }}">
+                    <span class="slider-text-1{%- if link.current %}header__active-menu-item{% endif %}">{{ link.title | escape }}</span>
+                    <span class="slider-text-2{%- if link.current %}header__active-menu-item{% endif %}">{{ link.title | escape }}</span>
                   </a>
                 {%- endif -%}
               </li>
@@ -536,6 +547,16 @@
           </div>
         </details>
       </details-modal>
+
+      <div class="header__icon header__icon--world link focus-inset">
+        <a href="#" class="link-slider">
+          <span class="slider-text-1">EU</span>
+          <span class="slider-text-2">EU</span>
+        </a>
+        <a href="#" class="icon-world">
+          {% render 'icon-world' %}
+        </a>
+      </div>
 
       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">

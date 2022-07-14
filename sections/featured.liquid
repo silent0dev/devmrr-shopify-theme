@@ -1,0 +1,90 @@
+{% if section.blocks.size > 0 %}
+    <div class="featured-products-section">
+        <div class="featured-product-header">
+            {% if section.settings.heading != blank %}
+                <h2 class="featured-product-heading">
+                    {{ section.settings.heading }}
+                </h2>
+            {% endif %}
+            {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+                <a class="btn btn--primary link-slider" href="{{ section.settings.button_link }}">
+                    <span class="slider-text-1">{{ section.settings.button_label }}{% render 'icon-arrow-right' %}</span>
+                    <span class="slider-text-2">{{ section.settings.button_label }}{% render 'icon-arrow-right' %}</span>
+                </a>
+            {% endif %}
+        </div>
+        <div class="featured-products-wraper">
+            {% for block in section.blocks %}
+                <div class="featured-product-item">
+                    {% assign title = block.settings.title %}
+                    {% assign image = block.settings.image %}
+                    {% assign price = block.settings.price %}
+                    {% assign link = block.settings.link %}
+                    {% assign description = block.settings.description %}
+                    {% render 'product-card' title: title, image: image, price: price, link: link, description: block.settings.description %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+{% schema %}
+{
+    "name": "Featured",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "text",
+                    "id": "price",
+                    "label": "Price"
+                },
+                {
+                    "type": "text",
+                    "id": "description",
+                    "label": "Description"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "max_blocks": 4,
+    "presets": [
+        {
+            "name": "Featured"
+        }
+    ]
+}
+{% endschema %}

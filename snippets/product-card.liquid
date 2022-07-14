@@ -1,22 +1,22 @@
 <div class="product-card">
     <p class="product-title">
-        <a href="{{ product.url }}">{{ product.title }}</a>
+        <a href="{{ link }}">{{ title }}</a>
     </p>
-    {% assign width = product.featured_image.width | plus: 0.0 %}
-    {% assign height = product.featured_image.height | plus: 0.0 %}
+    {% assign width = image.width | plus: 0.0 %}
+    {% assign height = image.height | plus: 0.0 %}
     {% assign st = height | divided_by: width | times: 100 %}
-    <a href="{{ product.url }}" class="product-image" style="padding-bottom: {{ st }}%;">
-        {{ product.featured_image | img_url: '750x' | img_tag }}
+    <a href="{{ link }}" class="product-image" style="padding-bottom: {{ st }}%;">
+        {{ image | img_url: '750x' | img_tag }}
     </a>
     <div class="product-info">
         <p class="product-price">
-            <a href="{{ product.url }}">
-                {{ product.price | money }}
+            <a href="{{ link }}">
+                ${{ price }}
             </a>
         </p>
         {% if description != blank %}
             <p class="product-description">
-                <a href="{{ product.url }}">
+                <a href="{{ link }}">
                     <span>{{ description }}</span>
                 </a>
             </p>

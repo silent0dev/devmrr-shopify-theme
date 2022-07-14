@@ -1,7 +1,7 @@
 <div class="video__banner-wraper">
-    {% if section.settings.video_link != blank %}
+    {% if section.settings.video_id != blank %}
         <div class="video__banner-video small-hide">
-            <iframe src="{{ section.settings.video_link }}?background=1&autoplay=1&loop=1&byline=0&title=0" allowfullscreen allowtransparency allow="autoplay"></iframe>
+            <iframe src="https://player.vimeo.com/video/{{ section.settings.video_id }}?&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&#t=235s" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
     {% endif %}
     {% if section.settings.mobile_image != blank %}
@@ -14,8 +14,9 @@
             <h2 class="video__banner-heading small-hide">{{ section.settings.heading }}</h2>
             <h2 class="video__banner-heading medium-hide large-up-hide">{{ section.settings.mobile_heading }}</h2>
             {% if section.settings.button_link != blank and section.settings.button_label != blank %}
-                <a href="{{ section.settings.button_link }}" class="btn btn--outline">
-                    <span>{{ section.settings.button_label }}</span>
+                <a href="{{ section.settings.button_link }}" class="btn btn--outline link-slider">
+                    <span class="slider-text-1">{{ section.settings.button_label }}{% render 'icon-arrow-right' %}</span>
+                    <span class="slider-text-2">{{ section.settings.button_label }}{% render 'icon-arrow-right' %}</span>
                 </a>
             {% endif %}
         </div>
@@ -27,9 +28,9 @@
     "class": "video-banner",
     "settings": [
         {
-            "type": "url",
-            "id": "video_link",
-            "label": "Video Link"
+            "type": "text",
+            "id": "video_id",
+            "label": "Video ID"
         },
         {
             "type": "image_picker",

@@ -33,4 +33,8 @@ $(document).ready(function(){
         e.preventDefault();
         $(this).closest('li').removeClass('active');
     });
+
+    $('.lang-list-selecter').find('select').change(function(){
+        window.location.href = '/';
+    });
 });

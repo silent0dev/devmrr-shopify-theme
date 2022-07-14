@@ -8,17 +8,16 @@
         {% endfor %}
         {% if promotion_count > 0 %}
             {% assign promotion_index = 0 %}
-            <div class="mega-menu__promotion mega-menu__wrap {% if promotion_count ==5 %}mega-menu__promotion-2{% endif %}">
+            <div class="mega-menu__promotion mega-menu__wrap {% if promotion_count < 5 %}mega-menu__promotion-2{% endif %}">
                 {% for block in section.blocks %}
                     {% if block.type == 'featured_promotion' %}
                         {% if promotion_count == 5 and promotion_index == 0 %}
                             <div class="mega-menu__promotion-left">
                         {% endif %}
                         <div class="mega-menu__promotion-item">
-                            {% assign collection = block.settings.collection %}
-                            <a href="{{ collection.url }}">
+                            <a href="{{ block.settings.link }}">
                                 <h2 class="mega-menu__heading">
-                                    {{ collection.title }}
+                                    {{ block.settings.heading }}
                                 </h2>
                             </a>
                             {% if block.settings.subheading != blank %}
@@ -30,7 +29,7 @@
                                 {% assign width = block.settings.image.width | plus: 0.0 %}
                                 {% assign height = block.settings.image.height | plus: 0.0 %}
                                 {% assign st = height | divided_by: width | times: 100 %}
-                                <a href="{{ collection.url }}" class="mega-menu__image" style="padding-bottom: {{ st }}%;">
+                                <a href="{{ block.settings.link }}" class="mega-menu__image" style="padding-bottom: {{ st }}%;">
                                     {{ block.settings.image | img_url: '750x' | img_tag }}
                                 </a>
                             {% endif %}
@@ -47,21 +46,69 @@
                 {% endfor %}
             </div>
         {% endif %}
+        {% for block in section.blocks %}
+            {% if block.type == 'single_link' %}
+                <div class="mega-menu__single_link mega-menu__wrap">
+                    <a href="{{ block.settings.link }}" class="animated_link link-slider">
+                        <span class="slider-text-1">{{ block.settings.label }}</span>
+                        <span class="slider-text-2">{{ block.settings.label }}</span>
+                    </a>
+                </div>
+            {% endif %}
+            {% if block.type == 'sub_menu' %}
+                <div class="mega-menu__submenu mega-menu__wrap">
+                    <div class="mega-menu__submenu-item">
+                        {% for link in block.settings.submenu1.links %}
+                            <a href="{{ link.url }}" class="btn btn--outline link-slider">
+                                <span class="slider-text-1">{{ link.title }}</span>
+                                <span class="slider-text-2">{{ link.title }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="mega-menu__submenu-item">
+                        {% for link in block.settings.submenu2.links %}
+                            <a href="{{ link.url }}" class="btn btn--outline link-slider">
+                                <span class="slider-text-1">{{ link.title }}</span>
+                                <span class="slider-text-2">{{ link.title }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="mega-menu__submenu-item">
+                        {% for link in block.settings.submenu3.links %}
+                            <a href="{{ link.url }}" class="btn btn--outline link-slider">
+                                <span class="slider-text-1">{{ link.title }}</span>
+                                <span class="slider-text-2">{{ link.title }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
     <div class="draw-megamenu__content" id="megamenu-drawer--{{ section.settings.handle | handleize }}">
         {% for block in section.blocks %}
             {% if block.type == 'featured_promotion' %}
-                <a class="draw-megamenu__link" href="{{ block.settings.collection.url }}">
+                <a class="draw-megamenu__link" href="{{ block.settings.link }}">
                     {% if block.settings.subheading != blank %}
                         <p class="draw-megamenu__subheading">{{ block.settings.subheading }}</p>
                     {% endif %}
-                    <p class="draw-megamenu__heading">{{ block.settings.collection.title }}</p>
+                    <p class="draw-megamenu__heading">{{ block.settings.heading }}</p>
                 </a>
             {% endif %}
         {% endfor %}
         {% for block in section.blocks %}
             {% if block.type == 'sub_menu' %}
-                {% for link in block.settings.link_list.links %}
+                {% for link in block.settings.submenu1.links %}
+                    <a class="draw-megamenu__link" href="{{ link.url }}">
+                        <p class="draw-megamenu__heading">{{ link.title }}</p>
+                    </a>
+                {% endfor %}
+                {% for link in block.settings.submenu2.links %}
+                    <a class="draw-megamenu__link" href="{{ link.url }}">
+                        <p class="draw-megamenu__heading">{{ link.title }}</p>
+                    </a>
+                {% endfor %}
+                {% for link in block.settings.submenu3.links %}
                     <a class="draw-megamenu__link" href="{{ link.url }}">
                         <p class="draw-megamenu__heading">{{ link.title }}</p>
                     </a>
@@ -87,9 +134,9 @@
             "name": "Featured Promotion",
             "settings": [
                 {
-                    "type": "collection",
-                    "id": "collection",
-                    "label": "Collection"
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Heading"
                 },
                 {
                     "type": "text",
@@ -100,6 +147,11 @@
                     "type": "image_picker",
                     "id": "image",
                     "label": "Image"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
                 }
             ]
         },
@@ -125,24 +177,18 @@
             "settings": [
                 {
                     "type": "link_list",
-                    "id": "submenu",
-                    "label": "Submenu"
+                    "id": "submenu1",
+                    "label": "Submenu1"
                 },
                 {
-                    "type": "select",
-                    "id": "menu_width",
-                    "options": [
-                        {
-                        "value": "25%",
-                        "label": "Small"
-                        },
-                        {
-                        "value": "50%",
-                        "label": "Large"
-                        }
-                    ],
-                    "default": "25%",
-                    "label": "Menu Width"
+                    "type": "link_list",
+                    "id": "submenu2",
+                    "label": "Submenu2"
+                },
+                {
+                    "type": "link_list",
+                    "id": "submenu3",
+                    "label": "Submenu3"
                 }
             ]
         }
