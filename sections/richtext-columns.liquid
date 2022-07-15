@@ -1,0 +1,97 @@
+{% if section.blocks.size > 0 %}
+    <section class="richtext-coulmns-section small-hide">
+        <div class="richtext-coulmns-warpper">
+            {% for block in section.blocks %}
+                <div class="richtext-coulmn-item">
+                    <div class="richtext">
+                        {% if block.type == 'header' %}
+                            <h2 class="section-heading">
+                                {{ block.settings.heading }}
+                            </h2>
+                        {% else %}
+                            {% if block.settings.subheading != blank %}
+                                <span class="subheading">{{ block.settings.subheading }}</span>
+                            {% endif %}
+                            {% if block.settings.heading != blank %}
+                                <p class="heading">{{ block.settings.heading }}</p>
+                            {% endif %}
+                            {% if block.settings.image != blank %}
+                                <div class="image-warpper text-right">
+                                    {{ block.settings.image | img_url: '250x' | img_tag }}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="richtext-coulmns-section-mobile large-up-hide medium-hide">
+        <div class="richtext-coulmns-warpper">
+            {% for block in section.blocks %}
+                {% if block.type == 'header' %}
+                    <h2 class="section-heading">{{ block.settings.heading }}</h2>
+                {% endif %}
+            {% endfor %}
+            <div class="richtext-coulmns">
+                {% for block in section.blocks %}
+                    {% if block.type == 'content' %}
+                        <div class="richtext-coulmn-item">
+                            <div class="image-warpper">
+                                {{ block.settings.image | img_url: '250x' | img_tag }}
+                            </div>
+                            <span class="subheading">{{ block.settings.subheading }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Richtext Columns",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "header",
+            "name": "Header",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Heading"
+                }
+            ]
+        },
+        {
+            "type": "content",
+            "name": "Content",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "subheading",
+                    "label": "Subheading"
+                },
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Heading"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                }
+            ]
+        }
+    ],
+    "max_blocks": 4,
+    "presets": [
+        {
+            "name": "Richtext Columns"
+        }
+    ]
+}
+{% endschema %}
