@@ -1,0 +1,102 @@
+{% if section.blocks.size > 0 %}
+    <section class="multicolumn-images-section">
+        {% if section.settings.heading != blank %}
+            <h2 class="heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        <div class="multicolumn-images-wrapper row--{{ section.blocks.size }}">
+            {% if section.blocks.size == 2 %}
+                {% for block in section.blocks %}
+                    <div class="multicolumn-image-item" {% if block.settings.caption == blank %}style="margin-top: 30px"{% endif %}>
+                        <a href="{{ block.settings.link }}">
+                            {% if block.settings.caption != blank %}
+                                <span class="image-caption">{{ block.settings.caption }}</span>
+                            {% endif %}
+                            <div class="image-warpper">
+                                {% if block.settings.image != blank %}
+                                    <img src="{{ block.settings.image | img_url: '1024x' }}" class="small-hide">
+                                    {% assign mobile_image = block.settings.mobile_image | default: block.settings.image %}
+                                    <img src="{{ mobile_image | img_url: '750x' }}" class="large-up-hide medium-hide">
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% elsif section.blocks.size == 3 %}
+                {% for block in section.blocks %}
+                    {% if forloop.index == 1 %}
+                        <div class="columns-col-1">
+                    {% elsif forloop.index == 2 %}
+                        <div class="columns-col-2">
+                    {% endif %}
+                    <div class="multicolumn-image-item">
+                        <a href="{{ block.settings.link }}">
+                            {% if block.settings.caption %}
+                                <span class="image-caption">{{ block.settings.caption }}</span>
+                            {% endif %}
+                            <div class="image-warpper">
+                                {% if block.settings.image != blank %}
+                                    <img src="{{ block.settings.image | img_url: '1024x' }}" class="small-hide">
+                                    {% assign mobile_image = block.settings.mobile_image | default: block.settings.image %}
+                                    <img src="{{ mobile_image | img_url: '750x' }}" class="large-up-hide medium-hide">
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                    {% if forloop.index == 1 %}
+                        </div>                            
+                    {% elsif forloop.index == 3 %}
+                        </div>
+                    {% endif %}
+                {% endfor %}  
+            {% endif %}
+            
+        </div>
+    </section>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Multicolumn Images",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image_column",
+            "name": "Image Column",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "caption",
+                    "label": "Image Caption"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "max_blocks": 3,
+    "presets": [
+        {
+            "name": "Multicolumn Images"
+        }
+    ]
+}
+{% endschema %}
