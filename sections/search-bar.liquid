@@ -1,0 +1,55 @@
+<section class="search-bar-section">
+    <div class="search-bar-wraper">
+        {% if section.settings.heading != blank %}
+            <h4 class="title">{{ section.settings.heading }}</h4>
+        {% endif %}
+        {% if section.settings.btn_label != blank and section.settings.btn_link != blank %}
+            <a href="{{ section.settings.btn_link }}" class="link-slder">
+                <span class="slider-text-1">
+                    {% if section.settings.icon != blank %}
+                        {{ section.settings.icon }}
+                        {{ section.settings.btn_label }}
+                    {% endif %}
+                </span>
+                <span class="slider-text-2">
+                    {% if section.settings.icon != blank %}
+                        {{ section.settings.icon }}
+                        {{ section.settings.btn_label }}
+                    {% endif %}
+                </span>
+            </a>
+        {% endif %}
+    </div>
+</section>
+{% schema %}
+{
+    "name": "Search Bar",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "text",
+            "id": "btn_label",
+            "label": "Button Label"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "html",
+            "id": "icon",
+            "label": "Icon"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Search Bar"
+        }
+    ]
+}
+{% endschema %}

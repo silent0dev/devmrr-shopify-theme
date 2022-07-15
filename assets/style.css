@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'FHOscar-Regular';
+    src: url("FHOscar-Regular.woff2") format("woff2")
+}
+@font-face {
+    font-family: 'FHOscar-Bold';
+    src: url("FHOscar-Bold.woff2") format("woff2")
+}
+@font-face {
+    font-family: 'FHOscar-MediumItalic';
+    src: url("FHOscar-MediumItalic.woff2") format("woff2")
+}
+
+* {
+    font-family: 'FHOscar-Regular' !important;
+}
+
 @keyframes slide26 {
     0% {margin-top:0px;}
     100% {margin-top:-28px;}
@@ -17,16 +34,6 @@
 @keyframes slide40 {
     0% {margin-top:0px;}
     100% {margin-top: -38px;}
-}
-
-@keyframes scale {
-    0% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(1.05);
-    }
 }
 * {
 --responsive: calc((var(--min-font) * 1px) + (var(--max-font) - var(--min-font)) * ((100vw - 420px) / (1600 - 420)));
@@ -234,10 +241,10 @@
     object-fit: contain;
     object-fit: cover;
     object-position: center;
+    transition: .4s;
 }
 
 .mega-menu__image:hover img {
-    animation: scale .5s;
     transform: scale(1.05);
 }
 
@@ -466,7 +473,7 @@
 }
 
 .featured-products-section {
-    margin: 0 40px;
+    margin: 0 40px 100px;
     display: flex;
     margin-top: 15px;
     border-top: 1px solid black;
@@ -523,8 +530,8 @@
 .product-card a {
     text-decoration: none;
     color: black;
-    line-height: 10px;
-    font-size: 10px;
+    line-height: 11px;
+    font-size: 11px;
     letter-spacing: .5px;
     font-weight: 400;
 }
@@ -548,10 +555,10 @@
     top: 0;
     object-fit: cover;
     object-position: center;
+    transition: .4s;
 }
 
 .product-card .product-image:hover img {
-    animation: scale .5s;
     transform: scale(1.05);
 }
 
@@ -594,6 +601,7 @@
         border: none;
         margin-left: 15px;
         margin-right: 15px;
+        margin-bottom: 0;
     }
 
     .featured-product-header {
@@ -658,6 +666,10 @@
 
     .video__banner-text-content .link-slider.btn--outline {
         font-size: 16px !important;
+    }
+
+    .product-card a {
+        font-size: 11px;
     }
 }
 
@@ -883,5 +895,106 @@
 
     .slider-text-2 {
         display: none !important;
+    }
+}
+
+.search-bar-section {
+    background: #0c0c0c;
+    padding: 80px 50px 100px;
+}
+
+.search-bar-wraper .title {
+    font-size: 11px;
+    letter-spacing: .5px;
+    color: #f5f5f5;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 3.5rem;
+}
+
+.search-bar-wraper .link-slder {
+    text-decoration: none;
+    color: #f5f5f5;
+    height: 50px!important;
+    overflow: hidden;
+    display: flex!important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start!important;
+    outline: none;
+    border-left: 0px;
+    border-right: 0px;
+    transition: all .3s cubic-bezier(.19,1,.22,1);
+    -moz-transition: all .3s cubic-bezier(.19,1,.22,1);
+    -webkit-transition: all .3s cubic-bezier(.19,1,.22,1);
+    font-size: 15px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.27;
+    letter-spacing: 0;
+    text-align: center;
+    color: #fff;
+    background-color: #0c0c0c;
+    border-bottom: 1px solid;
+}
+
+.search-bar-wraper .link-slder span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+.search-bar-wraper .link-slder span svg {
+    width: 26px;
+    height: 26px;
+    margin-right: 18px;
+    position: relative;
+    top: 2px;
+    stroke: #f5f5f5;
+}
+
+.search-bar-wraper .link-slder span svg * {
+    fill: #f5f5f5;
+}
+
+.search-bar-wraper .link-slder span svg circle {
+    fill: transparent;
+}
+
+.search-bar-wraper .link-slder .icon-right-arrow {
+    margin-left: 10px;
+}
+
+@media (min-width: 750px) {
+    .search-bar-wraper .link-slder:hover .slider-text-1 {
+        animation: slide50 .3s cubic-bezier(.25,.46,.45,.94) 0s;
+    }   
+}
+
+@media (max-width: 750px) {
+    .search-bar-section {
+        padding: 45px 16px 60px;
+    }
+
+    .search-bar-wraper .title {
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+
+    .search-bar-wraper .link-slder {
+        height: auto !important;
+    }
+
+    .search-bar-wraper .link-slder span {
+        font-size: 24px;
+    }
+
+    .search-bar-wraper .link-slder span svg {
+        margin-right: 8px;
     }
 }
