@@ -13,7 +13,7 @@
                             {% endif %}
                             <div class="image-warpper">
                                 {% if block.settings.image != blank %}
-                                    <img src="{{ block.settings.image | img_url: '1024x' }}" class="small-hide">
+                                    <img src="{{ block.settings.image | img_url: '1200x' }}" class="small-hide">
                                     {% assign mobile_image = block.settings.mobile_image | default: block.settings.image %}
                                     <img src="{{ mobile_image | img_url: '750x' }}" class="large-up-hide medium-hide">
                                 {% endif %}
@@ -35,7 +35,7 @@
                             {% endif %}
                             <div class="image-warpper">
                                 {% if block.settings.image != blank %}
-                                    <img src="{{ block.settings.image | img_url: '1024x' }}" class="small-hide">
+                                    <img src="{{ block.settings.image | img_url: '1200x' }}" class="small-hide">
                                     {% assign mobile_image = block.settings.mobile_image | default: block.settings.image %}
                                     <img src="{{ mobile_image | img_url: '750x' }}" class="large-up-hide medium-hide">
                                 {% endif %}

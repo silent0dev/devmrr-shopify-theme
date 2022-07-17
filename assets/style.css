@@ -15,6 +15,11 @@
     font-family: 'FHOscar-Regular' !important;
 }
 
+@keyframes link_slide {
+    0% {margin-top:15px;}
+    100% {margin-top:-15px;}
+}
+
 @keyframes slide26 {
     0% {margin-top:0px;}
     100% {margin-top:-28px;}
@@ -126,6 +131,11 @@
     font-size: 11px;
     font-weight: normal;
     text-transform: uppercase;
+    align-items: flex-start !important;
+}
+
+.header__heading-logo {
+    transition: opacity .3s ease-in;
 }
 
 .header__heading .header__heading-link:hover .header__heading-logo {
@@ -761,8 +771,9 @@
 
 .link-slider.header__menu-item span {
     margin-bottom: 13px;
-    top: 5px;
     letter-spacing: 0;
+    top: 5px;
+    line-height: 1.5;
 }
 
 .mega-menu__submenu-item a.link-slider {
@@ -1281,7 +1292,7 @@
 
 .multicolumn-image-item .image-warpper {
     position: relative;
-    min-height: 730px;
+    min-height: 840px;
     overflow: hidden;
 }
 
@@ -1293,7 +1304,7 @@
 }
 
 .multicolumn-images-wrapper.row--3 .columns-col-2 .multicolumn-image-item .image-warpper {
-    min-height: 355px;
+    min-height: 410px;
 }
 
 .multicolumn-images-wrapper.row--3 .columns-col-2 .multicolumn-image-item {

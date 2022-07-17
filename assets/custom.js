@@ -2,6 +2,9 @@ $(document).ready(function(){
     $('.megamenu').mouseleave(function(){
         $('.megamenu').fadeOut('fast');
     });
+    $('body').mouseleave(function(){
+        $('.megamenu').fadeOut('fast');
+    });
     $('.list-menu__item').mouseenter(function(){
         $('.megamenu').fadeOut('fast');
         $('.megamenu').removeClass('active');

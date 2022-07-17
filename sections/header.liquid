@@ -360,11 +360,12 @@
             <img srcset="{{ section.settings.logo | image_url: width: section.settings.logo_width }} 1x, {{ section.settings.logo | image_url: width: image_size_2x }} 2x"
               src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
               loading="lazy"
-              class="header__heading-logo"
+              class="header__heading-logo small-hide"
               width="{{ section.settings.logo.width }}"
               height="{{ section.settings.logo.height }}"
               alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
             >
+            <img src="{{ section.settings.logo | img_url: '250x' }}" class="header__heading-logo large-up-hide medium-hide">
           {%- else -%}
             <span class="h2">{{ shop.name }}</span>
           {%- endif -%}
