@@ -6,12 +6,13 @@
         <div class="multicolumn-images-wrapper row--{{ section.blocks.size }}">
             {% if section.blocks.size == 2 %}
                 {% for block in section.blocks %}
-                    <div class="multicolumn-image-item" {% if block.settings.caption == blank %}style="margin-top: 30px"{% endif %}>
+                    <div class="multicolumn-image-item {% if block.settings.caption == blank %}no-caption{% endif %}" {% if block.settings.caption == blank %}style="margin-top: 27px"{% endif %}>
                         <a href="{{ block.settings.link }}">
-                            {% if block.settings.caption != blank %}
-                                <span class="image-caption">{{ block.settings.caption }}</span>
-                            {% endif %}
-                            <div class="image-warpper">
+                            <span class="image-caption">{{ block.settings.caption }}</span>
+                            {% assign width = block.settings.image.width | plus: 0.0 %}
+                            {% assign height = block.settings.image.height | plus: 0.0 %}
+                            {% assign padding = height | divided_by: width | times: 100 %}
+                            <div class="image-warpper" style="padding-bottom: {{padding}}%;">
                                 {% if block.settings.image != blank %}
                                     <img src="{{ block.settings.image | img_url: '1200x' }}" class="small-hide">
                                     {% assign mobile_image = block.settings.mobile_image | default: block.settings.image %}
@@ -33,7 +34,10 @@
                             {% if block.settings.caption %}
                                 <span class="image-caption">{{ block.settings.caption }}</span>
                             {% endif %}
-                            <div class="image-warpper">
+                            {% assign width = block.settings.image.width | plus: 0.0 %}
+                            {% assign height = block.settings.image.height | plus: 0.0 %}
+                            {% assign padding = height | divided_by: width | times: 100 %}
+                            <div class="image-warpper" style="padding-bottom: {{padding}}%;">
                                 {% if block.settings.image != blank %}
                                     <img src="{{ block.settings.image | img_url: '1200x' }}" class="small-hide">
                                     {% assign mobile_image = block.settings.mobile_image | default: block.settings.image %}
