@@ -1,7 +1,12 @@
 {% if section.blocks.size > 0 %}
     <section class="multicolumn-images-section">
         {% if section.settings.heading != blank %}
-            <h2 class="heading">{{ section.settings.heading }}</h2>
+            <div class="heading">
+                <h2>{{ section.settings.heading }}</h2>
+                {% if section.settings.subheading != blank %}
+                    <p>{{ section.settings.subheading }}</p>
+                {% endif %}
+            </div>
         {% endif %}
         <div class="multicolumn-images-wrapper row--{{ section.blocks.size }}">
             {% if section.blocks.size == 2 %}
@@ -57,6 +62,12 @@
             {% endif %}
             
         </div>
+        {% if section.settings.btn_label != blank and section.settings.btn_link != blank %}
+            <a class="btn btn--outline link-slider" href="{{ section.settings.btn_link }}">
+                <span class="slider-text-1">{{ section.settings.btn_label }}</span>
+                <span class="slider-text-2">{{ section.settings.btn_label }}</span>
+            </a>
+        {% endif %}
     </section>
 {% endif %}
 
@@ -68,6 +79,21 @@
             "type": "text",
             "id": "heading",
             "label": "Heading"
+        },
+        {
+            "type": "text",
+            "id": "subheading",
+            "label": "SubHeading"
+        },
+        {
+            "type": "text",
+            "id": "btn_label",
+            "label": "Button Label"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button Link"
         }
     ],
     "blocks": [

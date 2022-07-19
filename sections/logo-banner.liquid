@@ -1,0 +1,24 @@
+{% if section.settings.logo != blank %}
+    <section class="logo--banner-section">
+        <div class="image-warpper text-center">
+            {{ section.settings.logo | img_url: '750x' | img_tag }}
+        </div>
+    </section>
+{% endif %}
+{% schema %}
+{
+    "name": "Logo banner",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Image"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Logo banner"
+        }
+    ]
+}
+{% endschema %}

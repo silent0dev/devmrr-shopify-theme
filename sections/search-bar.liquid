@@ -8,13 +8,19 @@
                 <span class="slider-text-1">
                     {% if section.settings.icon != blank %}
                         {{ section.settings.icon }}
-                        {{ section.settings.btn_label }}
+                    {% endif %}
+                    {{ section.settings.btn_label }}
+                    {% if section.settings.icon2 != blank %}
+                        <span class="align-right text-right">{{ section.settings.icon2 }}</span>
                     {% endif %}
                 </span>
                 <span class="slider-text-2">
                     {% if section.settings.icon != blank %}
                         {{ section.settings.icon }}
-                        {{ section.settings.btn_label }}
+                    {% endif %}
+                    {{ section.settings.btn_label }}
+                    {% if section.settings.icon2 != blank %}
+                        <span class="align-right text-right">{{ section.settings.icon2 }}</span>
                     {% endif %}
                 </span>
             </a>
@@ -43,6 +49,11 @@
         {
             "type": "html",
             "id": "icon",
+            "label": "Icon"
+        },
+        {
+            "type": "html",
+            "id": "icon2",
             "label": "Icon"
         }
     ],

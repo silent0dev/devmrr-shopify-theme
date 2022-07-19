@@ -15,8 +15,11 @@
             {{ section.settings.mobile_image | img_url: '750x' | img_tag }}
         </div>
     {% endif %}
-    {% if section.settings.heading != blank %}
+    {% if section.settings.heading != blank or section.settings.over_image != blank %}
         <div class="video__banner-text-content">
+            {% if section.settings.over_image != blank %}
+                {{ section.settings.over_image | img_url: '1200x' | img_tag }}
+            {% endif %}
             <h2 class="video__banner-heading small-hide">{{ section.settings.heading }}</h2>
             <h2 class="video__banner-heading medium-hide large-up-hide">{{ section.settings.mobile_heading }}</h2>
             {% if section.settings.button_link != blank and section.settings.button_label != blank %}
@@ -52,6 +55,11 @@
             "type": "image_picker",
             "id": "mobile_image",
             "label": "Mobile Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "over_image",
+            "label": "Over Image"
         },
         {
             "type": "text",
