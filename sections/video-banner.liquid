@@ -1,7 +1,13 @@
 <div class="video__banner-wraper">
-    {% if section.settings.video_id != blank %}
+    {% if section.settings.vimeo_video_id != blank or section.settings.delivery_video_id or section.settings.youtube_video_id %}
         <div class="video__banner-video small-hide">
-            <iframe src="https://player.vimeo.com/video/{{ section.settings.video_id }}?loop=true&autoplay=true&muted=true&gesture=media&playsinline=false&byline=false&portrait=false&title=false&speed=true&transparent=false&sidedock=false&controls=false" allowfullscreen="" allowtransparency="" allow="autoplay" data-ready="true" tabindex="-1"></iframe>
+            {% if section.settings.vimeo_video_id != blank %}
+                <iframe src="https://player.vimeo.com/video/{{ section.settings.vimeo_video_id }}?loop=true&autoplay=true&muted=true&gesture=media&playsinline=false&byline=false&portrait=false&title=false&speed=true&transparent=false&sidedock=false&controls=false" allowfullscreen="" allowtransparency="" allow="autoplay" data-ready="true" tabindex="-1"></iframe>
+            {% elsif section.settings.delivery_video_id != blank %}
+                <iframe src="https://iframe.videodelivery.net/{{ section.settings.delivery_video_id }}?muted=true&amp;loop=true&amp;autoplay=true&amp;controls=false" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>
+            {% elsif section.settings.youtube_video_id != blank %}
+                <iframe src="http://www.youtube.com/embed/{{ section.settings.youtube_video_id }}?playlist={{ section.settings.youtube_video_id }}&loop=1&autoplay=1&controls=1&showinfo=0&mute=1" frameborder="0" allowfullscreen></iframe>
+            {% endif %}
         </div>
     {% endif %}
     {% if section.settings.mobile_image != blank %}
@@ -29,8 +35,18 @@
     "settings": [
         {
             "type": "text",
-            "id": "video_id",
-            "label": "Video ID"
+            "id": "vimeo_video_id",
+            "label": "Vimeo Video ID"
+        },
+        {
+            "type": "text",
+            "id": "delivery_video_id",
+            "label": "Delivery Video ID"
+        },
+        {
+            "type": "text",
+            "id": "youtube_video_id",
+            "label": "YouTube Video ID"
         },
         {
             "type": "image_picker",
