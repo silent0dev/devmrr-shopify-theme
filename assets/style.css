@@ -1910,3 +1910,91 @@
         width: 80%;
     }
 }
+
+.image-with-text-2 {
+    padding: 100px 0 50px;
+    position: relative;
+}
+
+.image-with-text-2 .image-warpper {
+    background: black;
+    overflow: hidden;
+}
+
+.image-with-text-2 .image-warpper img {
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+.image-with-text-2 .image-warpper img {
+    width: 100%;
+}
+
+.image-with-text-2 .top-image {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.image-with-text-2 .top-image img {
+    max-width: 230px;
+}
+
+.image-with-text-2 .over-text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(calc(-50% + 50px));
+    padding: 50px 40px;
+}
+
+.image-with-text-2 .over-text .heading {
+    color: white;
+    font-size: 38px;
+    border-bottom: 2px solid;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    text-align: left;
+    margin-top: 0;
+}
+
+.image-with-text-2 .over-text .sub-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-with-text-2 .over-text .sub-content .subheading {
+    color: white;
+    font-size: 12px;
+    text-align: left;
+    margin: 0;
+}
+
+.image-with-text-2 .over-text .sub-content .link-slider {
+    color: white;
+    font-size: 12px !important;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+@media (max-width: 750px) {
+    .image-with-text-2 .top-image {
+        top: 40%;
+    }
+
+    .image-with-text-2 .over-text {
+        padding: 16px;
+    }
+
+    .image-with-text-2 .over-text .heading {
+        font-size: 18px;
+    }
+
+    .image-with-text-2 .over-text .sub-content .link-slider {
+        height: auto;
+    }
+}
